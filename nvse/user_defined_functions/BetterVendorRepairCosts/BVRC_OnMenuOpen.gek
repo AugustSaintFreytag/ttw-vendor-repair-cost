@@ -6,11 +6,8 @@ begin function { short iMenuId }
 	Ar_Cat aItems aWeaponItems
 	Ar_Cat aItems aArmorItems
 	
-	short iNumberOfItems = Ar_Size aItems
-	short iIndex = iNumberOfItems - 1
-
-	while iIndex > -1
-		ref rItem = aItems[iIndex]
+	foreach array_var aEntry <- aItems
+		ref rItem = aEntry["value"]
 		short iItemValue = GetItemValue rItem
 		short iRepairValue = 0.3 * iItemValue + (GetBaseHealth rItem) + 0.5
 
@@ -18,8 +15,6 @@ begin function { short iMenuId }
 			RefMapArraySetFloat "*_PWBVRV" iItemValue rItem
 			SetBaseItemValue rItem iRepairValue
 		endif
-
-		let iIndex := iIndex - 1
 	loop
 	
 	RefreshItemsList
