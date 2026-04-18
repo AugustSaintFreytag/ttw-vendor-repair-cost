@@ -1,0 +1,16 @@
+begin function {}
+	array_var aItems = RefMapKeys "*_PWBVRV"
+	short iNumberOfItems = Ar_Size aItems
+	short iIndex = iNumberOfItems - 1
+
+	while iIndex > -1
+		ref rItem = aItems[n]
+		float fValue = RefMapArrayGetFloat "*_PWBVRV" rF
+		SetBaseItemValue rItem fValue
+
+		let n := n - 1
+	loop
+
+	let aItems := Ar_Null
+	RefMapDestroy "*_PWBVRV"
+end

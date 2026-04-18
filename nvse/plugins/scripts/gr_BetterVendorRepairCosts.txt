@@ -1,0 +1,7 @@
+ref OnMenuOpenUDF = CompileScript "BetterVendorRepairCosts\BVRC_OnMenuOpen.gek"
+ref OnMenuCloseUDF = CompileScript "BetterVendorRepairCosts\BVRC_OnMenuClose.gek"
+
+SetOnMenuOpenEventHandler OnMenuOpenUDF 1 1058
+SetOnMenuCloseEventHandler OnMenuCloseUDF 1 1058
+
+Print "Initialized event handlers for Better Vendor Repair Costs."

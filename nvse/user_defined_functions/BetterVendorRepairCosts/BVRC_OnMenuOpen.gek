@@ -1,0 +1,30 @@
+begin function { short iMenuId }
+	array_var aArmorItems = PlayerREF.GetAllItems 24 1 1 0
+	array_var aWeaponItems = PlayerREF.GetAllItems 40 1 1 0
+	array_var aItems = Ar_Construct "array"
+
+	Ar_Cat aItems aWeaponItems
+	Ar_Cat aItems aArmorItems
+	
+	short iNumberOfItems = Ar_Size aItems
+	short iIndex = iNumberOfItems - 1
+
+	while iIndex > -1
+		ref rItem = aItems[iIndex]
+		short iItemValue = GetItemValue rItem
+		short iRepairValue = 0.3 * iItemValue + (GetBaseHealth rItem) + 0.5
+
+		if eval (iRepairValue < iItemValue)
+			RefMapArraySetFloat "*_PWBVRV" iItemValue rItem
+			SetBaseItemValue rItem iRepairValue
+		endif
+
+		let iIndex := iIndex - 1
+	loop
+	
+	RefreshItemsList
+
+	let aItems := Ar_Null
+	let aArmorItems := Ar_Null
+	let aWeaponItems := Ar_Null
+end
