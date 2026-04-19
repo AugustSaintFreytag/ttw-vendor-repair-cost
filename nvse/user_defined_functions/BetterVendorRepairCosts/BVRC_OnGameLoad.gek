@@ -1,5 +1,9 @@
 begin function {}
-	array_var aItems = RefMapKeys "*_PWBVRV"
+	array_var aItems = RefMapArrayGetKeys "*_PWBVRV"
+
+	if eval (Ar_Size aItems) <= 0
+		return
+	endif
 
 	foreach array_var aEntry <- aItems
 		ref rItem = aEntry["value"]
